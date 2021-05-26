@@ -17,14 +17,20 @@ namespace AgeCalculator
             if (inputArr[0].Length == 4)
             {
                 try { birthDate = DateTime.ParseExact(inputArr[2] + "/" + inputArr[1] + "/" + inputArr[0], "dd/MM/yyyy", null).ToString("dd/MM/yyyy"); }
-                catch { Console.WriteLine("Please enter a valid day or month value!");
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message); //System message
+                    Console.WriteLine("Please enter a valid day or month value!");
                     
                 };
             }
             else
             {
                 try { birthDate = DateTime.ParseExact(input, "dd/MM/yyyy", null).ToString("dd/MM/yyyy"); }
-                catch { Console.WriteLine("Please enter a valid day or month value!");
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message); //System message
+                    Console.WriteLine("Please enter a valid day or month value!");
                   
                 };
                  }
@@ -50,7 +56,7 @@ namespace AgeCalculator
                 }
                 int days = (today - inputDate.AddMonths((years * 12) + months)).Days;
 
-                if(years < 0) { return string.Format( "Please enter a valid date, you are not even born yet!!"); }
+                if(years < 0) { return "Please enter a valid date, you are not even born yet!!"; }
 
                 else { return string.Format("{0} year{1}, {2} month{3} and {4} day{5}",
                     years, (years == 1) ? "" : "s",
